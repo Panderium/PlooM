@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: kube-base
+  namespace: argocd
+spec:
+  project: default
+
+  source:
+    repoURL: https://github.com/Panderium/PlooM.git
+    targetRevision: main
+    path: apps/kube
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: base
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+
+  syncWave: -10

@@ -1,0 +1,11 @@
+# PlooM Installation guide
+
+## Requirements
+- A kubernetes cluster with a `GatewayClass`
+- A minimal ArgoCD installed in its own namespace
+  
+This *Bootstrap* ArgoCD can be installed with the command line :
+```bash
+kubectl create namespace argocd
+kubectl apply -n argocd --server-side --force-conflicts -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+```
