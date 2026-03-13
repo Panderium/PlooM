@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: postgres
+  name: openbao
   namespace: argocd
 spec:
   project: default
@@ -9,11 +9,11 @@ spec:
   source:
     repoURL: https://github.com/Panderium/PlooM.git
     targetRevision: main
-    path: apps/postgresql
+    path: apps/openbao
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: database
+    namespace: openbao
 
   syncPolicy:
     automated:
@@ -21,7 +21,5 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-      - Replace=true
-      - ServerSideApply=true
 
-  syncWave: -7
+  syncWave: -10

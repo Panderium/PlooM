@@ -5,7 +5,7 @@ metadata:
   namespace: database
 spec:
   serviceName: postgres-headless
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: postgres
@@ -50,7 +50,7 @@ spec:
         name: postgres-data
       spec:
         accessModes: ["ReadWriteOnce"]
-        storageClassName: "standard" # adapte selon ton cluster
+        storageClassName: "local-path"
         resources:
           requests:
             storage: 20Gi
